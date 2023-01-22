@@ -22,13 +22,13 @@ export const SharedLayout: React.FC<IProps> = ({
   const year = new Date().getFullYear();
   const socialLinks = getSocialLinks();
   return (
-    <>
+    <div className="flex min-h-screen w-full flex-col">
       <Head>
         <title>{`Projectmate | ${title}`}</title>
         <link rel="icon" href="/dark-logo.svg" />
       </Head>
       <Topbar />
-      <main className="bg-gray-100 dark:bg-gray-900">
+      <main className="flex-1 bg-gray-100 dark:bg-gray-900">
         <div className={(hasContainer && 'm-auto max-w-screen-xl') || ''}>
           {children}
         </div>
@@ -53,21 +53,21 @@ export const SharedLayout: React.FC<IProps> = ({
           </div>
           <ul className="my-4 flex flex-col items-center justify-center gap-2 md:flex-row md:gap-8">
             <li>
-              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/privacy-policy" className="text-md font-extralight">
+                Privacy Policy
+              </Link>
             </li>
-          </ul>{' '}
-          This project is published under{' '}
+          </ul>
           <a
-            className="font-bold underline"
+            className="font-semibold underline"
             href="https://github.com/rohitdasu/projectmate/blob/main/LICENSE"
             target="_blank"
             rel="noreferrer"
           >
-            MIT License
-          </a>{' '}
-          © {year}
+            MIT License {year}
+          </a>
         </footer>
       )}
-    </>
+    </div>
   );
 };
