@@ -4,12 +4,22 @@ import { Typography } from '@/components/Typography';
 import { People } from '@/components/People';
 import axios from 'axios';
 import useSWR from 'swr';
+import Loader from 'public/animations/loading.json';
+import Lottie from 'lottie-react';
 
 const All: NextPage = () => {
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
   const url = `/api/user/all`;
   const { data } = useSWR(url, fetcher);
   const { results: users } = data || [];
+
+  if (!data) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Lottie animationData={Loader} />
+      </div>
+    );
+  }
 
   return (
     <SharedLayout title="Profile" hasContainer>
@@ -18,9 +28,9 @@ const All: NextPage = () => {
           as="h1"
           fontSize="xl"
           fontWeight="semibold"
-          className="dark:text-[#a6a6a6] sm:text-[30px]"
+          className="text-[#a6a6a6] sm:text-[30px]"
         >
-          <span className="text-gray-900 dark:text-gray-100">Mates</span>
+          <span className="text-gray-100">Mates</span>
         </Typography>
       </div>
       <div className="mb-8">
