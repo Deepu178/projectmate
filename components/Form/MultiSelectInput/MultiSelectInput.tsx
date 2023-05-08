@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { KeyboardEventHandler } from 'react';
-import { messageType, toastMessage } from 'shared';
+import { messageType, toastMessage } from '@/components';
 import toast from 'react-hot-toast';
 import classNames from 'classnames';
 
@@ -9,13 +9,15 @@ interface MultiSelectInputProps {
   onEnterClick: (value: string) => void;
   inputClassName?: string;
   errorMessage?: string;
+  id: string;
 }
 
-const MultiSelectInput = ({
+export const MultiSelectInput = ({
   suggestions,
   onEnterClick,
   inputClassName,
   errorMessage,
+  id,
 }: MultiSelectInputProps) => {
   const [isError, setIsError] = useState(false);
 
@@ -43,6 +45,7 @@ const MultiSelectInput = ({
   return (
     <>
       <input
+        id={id}
         ref={inputRef}
         list="tags"
         className={classNames(
@@ -59,5 +62,3 @@ const MultiSelectInput = ({
     </>
   );
 };
-
-export default MultiSelectInput;
